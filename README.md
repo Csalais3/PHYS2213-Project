@@ -1,4 +1,4 @@
-# PHYS2213-Project
+# PHYS2213-Project (Live Voice Decomposition)
 This program has 3 different sections
 
 Section 1:
