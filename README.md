@@ -9,3 +9,5 @@ Section 2:
 
 Section 3:
     Takes a live audio feed, applies the fourier transform, and displays the decomposed sinus waves along with the original sound wave in real time.
+
+    
