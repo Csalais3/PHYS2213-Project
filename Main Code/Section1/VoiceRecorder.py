@@ -6,15 +6,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-# Audio information for pyaudio
+# Constants for audio processing
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 48000
 CHUNK = 2048
 OUTPUT_FILENAME = 'recordedFile.wav'
 
+# Initialing PyAudio
 audio = pyaudio.PyAudio()
-info = audio.get_default_input_device_info()
 stream = audio.open(format = FORMAT, channels= CHANNELS, rate= RATE, input= True, frames_per_buffer= CHUNK)
 frames = []
 
@@ -37,11 +37,12 @@ while not stop_event.is_set():
     data = stream.read(CHUNK, exception_on_overflow=False)
     frames.append(data)
 
-
+# Closes the audio stream
 stream.stop_stream()
 stream.close()
 audio.terminate()
 
+# Saves the reconstructed audio as a .wav file
 waveFile = wave.open(OUTPUT_FILENAME, 'wb')
 waveFile.setnchannels(CHANNELS)
 waveFile.setsampwidth(audio.get_sample_size(FORMAT))

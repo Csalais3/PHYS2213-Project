@@ -9,17 +9,17 @@ CHANNELS = 1
 RATE = 48000
 CHUNK = 2048
 
-# Initialize PyAudio
+# Initialing PyAudio
 audio = pyaudio.PyAudio()
 stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
 
-# Initialize the plot
+# Initializing the plot
 plt.ion()
 fig, axs = plt.subplots(4, 1, figsize=(10, 15))  # Create 4 subplots (3 individual + 1 combined)
 time = np.linspace(0, CHUNK / RATE, CHUNK)  # Time axis for one CHUNK
 lines = [ax.plot([], [])[0] for ax in axs]  # Create line objects for each subplot
 
-# Set up axes for the subplots
+# Sets up axes for the subplots
 for i, ax in enumerate(axs):
     ax.set_xlabel("Time (s)")
     ax.set_ylabel("Amplitude")
@@ -99,11 +99,10 @@ try:
         # Update plots
         fig.canvas.draw()
         fig.canvas.flush_events()
-
 except KeyboardInterrupt:
     print("Stopped.")
 
-# Close the audio stream
+# Closes the audio stream
 stream.stop_stream()
 stream.close()
 audio.terminate()

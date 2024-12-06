@@ -5,13 +5,14 @@ import numpy as np
 import threading
 import struct
 
-# Audio information for pyaudio
+# Constants for audio processing
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 48000
 CHUNK = 2048
 OUTPUT_FILENAME = 'recordedFile.wav'
 
+# Initialing PyAudio
 audio = pyaudio.PyAudio()
 info = audio.get_default_input_device_info()
 stream = audio.open(format = FORMAT, channels= CHANNELS, rate= RATE, input= True, frames_per_buffer= CHUNK)
@@ -95,7 +96,7 @@ while not stop_event.is_set():
     fig.canvas.draw()
     fig.canvas.flush_events()
 
-
+# Closes the audio stream
 stream.stop_stream()
 stream.close()
 audio.terminate()
